@@ -14,5 +14,3 @@ BIBLIOTECAS DO PROJETO SO:
 	Os processos nada mais são que os dados para aonde os elementos da fila de procesos, que nada mais é que uma 		estrutura fila,irão apontar.
 
 	O sistema operacional possui sistema de ciclos, ou seja, um processo pode demandar mais de um ciclo para ser 			concluido.
-
-QUALQUER DUVIDA PODE FALAR COMIGO 
