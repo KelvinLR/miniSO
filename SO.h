@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<string.h>
 #include "processos.h"
+#include "processos.c"
+#include "fila.h"
 
 //STRUCT DE SISTEMA OPERACIONAL
 typedef struct SO{
@@ -12,14 +14,14 @@ typedef struct SO{
 	//funcao criar
 t_SO *SO_Create();
 	//funcao gerar procesos
-void SO_Gerar_Processo(t_SO *SO,int nomeProcesso,int ciclos);
+void SO_Gerar_Processo(t_SO *SO,int cod_processo, process_type tipo_processo, int ciclos);
 	//funcao encerrar processos
 void SO_Encerrar_Processo(t_SO *SO);
 	//funcao dump sistema operacional
 void SO_Dump(t_SO SO);
 	//funcao printar sistema operacional
 void SO_Print(t_SO SO);
-//=====================================================
+
 t_SO *SO_Create(){
 	t_SO *newSO;	
 	//confere se SO é igual a NULL
@@ -33,20 +35,20 @@ t_SO *SO_Create(){
 	printf("Sistema operacional criado com sucesso\n");
 	return newSO;
 }
-//=====================================================
-void SO_Gerar_Processo(t_SO *SO,int nomeProcesso,int ciclos){
+
+void SO_Gerar_Processo(t_SO *SO,int cod_processo, process_type tipo_processo, int ciclos){
 	//criando novo processo
-	t_Processo *newProcesso=processo_Create(nomeProcesso,ciclos);
+	t_Processo *newProcesso=processo_Create(cod_processo, tipo_processo, ciclos);
 	int i;
 	//loop que adiciona os processos de acordo com o numero de ciclos de cada processo
 	for(i=0;i<ciclos;i++){
-	fila_Alocate_Element(SO->filaProcessos,newProcesso,sizeof(t_Processo));
+		fila_Alocate_Element(SO->filaProcessos,newProcesso,sizeof(t_Processo));
 	}
 	//incrementa numero de processos ativos no SO
 	SO->numProcessos++;
 	return;
 }
-//=====================================================
+
 void SO_Encerrar_Processo(t_SO *SO){
 	//encerra um ciclo de processo da fila do SO
 	//elemento current da fila de processos aponta para o root
@@ -61,20 +63,20 @@ void SO_Encerrar_Processo(t_SO *SO){
 	//Caso elemento root seja diferente do próximo elemento após ele,decrementa numero de processos
 	if((memcmp(get_Data_Element(rootElement),get_Data_Element(currentElement),get_Element_Size(rootElement)))!=0){
 		SO->numProcessos--;
-	printf("todos os ciclos de um processo foram encerrados\n");
+		printf("todos os ciclos de um processo foram encerrados\n");
 	}
 	//desaloca elemento da fila de processos
 	fila_Desalocate_Element(SO->filaProcessos);
-printf("////////////////////////////////////////////////////////////////////////\n");
+	printf("\n\n");
 	return;
 }
-//=====================================================
+
 void SO_Dump(t_SO SO){
 	//realiza o dump da fila
 	fila_Dump(SO.filaProcessos);
 	return;
 }
-//=====================================================
+
 void SO_Print(t_SO SO){
 	//elemento current da fila de processos aponta para root elemento
 	fila_Go_To_Root_Element(SO.filaProcessos);
@@ -87,4 +89,4 @@ void SO_Print(t_SO SO){
 		fila_Go_Prox_Element(SO.filaProcessos);
 	}
 }
-//=====================================================
+

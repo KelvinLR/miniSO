@@ -2,18 +2,17 @@
 #include<stdlib.h>
 #include<string.h>
 #include "element.h"
-
-
 #define TRUE 1
 #define FALSE 0
 
 typedef unsigned char BOOL;
 //STRUCT FILA
-typedef struct fila{
+typedef struct fila {
 	t_Element *rootElement;
 	t_Element *currentElement;
 	int numElement;
-}t_Fila;
+} t_Fila;
+
 //FUNCOES FILA
 	//criar fila
 t_Fila *fila_create();
@@ -50,7 +49,6 @@ void fila_Desalocate_Element(t_Fila *fila);
 	//printar fila
 void fila_Dump(t_Fila *fila);
 
-//===============================================================
 t_Fila *fila_create(){
 	t_Fila *new_Fila;
 	//confere se alocação da fila ocorreu bem
@@ -66,7 +64,7 @@ t_Fila *fila_create(){
 	return new_Fila;
 	
 }
-//===============================================================
+
 BOOL fila_Is_Root_Element_Null(t_Fila *fila){
 	//confere se elemento root é NULL
 	if(fila->rootElement==NULL){
@@ -74,7 +72,7 @@ BOOL fila_Is_Root_Element_Null(t_Fila *fila){
 	}
 		return FALSE;
 }
-//===============================================================
+
 BOOL fila_Is_Current_Element_Null(t_Fila *fila){
 	//confere se elemento current é NULL
 		if(fila->currentElement==NULL){
@@ -83,7 +81,7 @@ BOOL fila_Is_Current_Element_Null(t_Fila *fila){
 		return FALSE;
 
 }
-//===============================================================
+
 BOOL fila_Is_Num_Element_Zero(t_Fila *fila){
 	//confere se o numero de elementos da fila é zero
 		if(fila->numElement==0){
@@ -91,7 +89,7 @@ BOOL fila_Is_Num_Element_Zero(t_Fila *fila){
 	}
 		return FALSE;
 }
-//===============================================================
+
 t_Element *fila_Get_Root_Element(t_Fila *fila){
 	//confere se elemento root da fila é igual a NULL
 	if(fila_Is_Root_Element_Null(fila)){
@@ -101,7 +99,7 @@ t_Element *fila_Get_Root_Element(t_Fila *fila){
 	//retorna elemento root da fila
 	return fila->rootElement;
 }
-//===============================================================
+
 t_Element *fila_Get_Current_Element(t_Fila *fila){
 	//confere se elemento current da fila é NULL
 	if(fila_Is_Current_Element_Null(fila)){
@@ -111,7 +109,7 @@ t_Element *fila_Get_Current_Element(t_Fila *fila){
 	//retorna elemento current da fila
 	return fila->currentElement;
 }
-//===============================================================
+
 int fila_Get_Num_Element(t_Fila *fila){
 	//confere se o numero de elementos da lista é igual a zero
 	if(fila_Is_Num_Element_Zero(fila)){
@@ -121,20 +119,19 @@ int fila_Get_Num_Element(t_Fila *fila){
 	//retorna numero de elementos da fila
 		return fila->numElement;
 }
-/////////////////////////////////////////////////////////////////
-//===============================================================
+
 void fila_Go_Prox_Element(t_Fila *fila){
 	//elemento current da fila aponta para o proximo elemento
 	fila->currentElement=get_Prox_Element(fila_Get_Current_Element(fila));
 	return;
 }
-//===============================================================
+
 void fila_Go_Prev_Element(t_Fila *fila){
 	//elemento current da fila aponta para o prev elemento
 	fila->currentElement=get_Prev_Element(fila_Get_Current_Element(fila));
 	return;
 }
-//===============================================================
+
 void fila_Go_Last_Element(t_Fila *fila){
 	//elemento current da fila aponta para o último elemento
 	if(fila_Is_Num_Element_Zero(fila)){
@@ -150,20 +147,20 @@ void fila_Go_Last_Element(t_Fila *fila){
 	}
 	return;
 }
-//===============================================================
+
 void fila_Go_Penultimate_Element(t_Fila *fila){
 	//elemento current vai para o último elemento da fila
 	fila_Go_Last_Element(fila);
 	//elemento current aponta para o prev elemento
 	fila_Go_Prev_Element(fila);
 }
-//===============================================================
+
 void fila_Go_To_Root_Element(t_Fila *fila){
 	//elemento current aponta para o root elemento
 	fila->currentElement=fila->rootElement;
 	return;
 }
-//===============================================================
+
 void fila_Alocate_Element(t_Fila *fila,void *data,int sizeData){
 	//confere se o endereço do dado passado como parametro é NULL
 	if(data==NULL){
@@ -200,7 +197,7 @@ void fila_Alocate_Element(t_Fila *fila,void *data,int sizeData){
 	printf("=============================\n");
 	return;
 }
-//===============================================================
+
 void fila_Desalocate_Element(t_Fila *fila){
 	//elemento current aponta para elemento root
 	fila_Go_To_Root_Element(fila);
@@ -220,7 +217,7 @@ void fila_Desalocate_Element(t_Fila *fila){
 	return;
 
 }
-//===============================================================
+
 void fila_Dump(t_Fila *fila){
 	printf("==========================================\n");
 	int i;

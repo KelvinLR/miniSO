@@ -20,8 +20,6 @@ typedef struct element{
 t_Element *element_Create(void *data,int size);
 	//funcao deletar elemento 
 void delete_Element(t_Element *element);
-
-
 	//funcao retorna dado do endereço apontado pelo elemento
 void *get_Data_Element(t_Element *element);
 	 //funcao retorna endereço do prox elemento
@@ -36,10 +34,9 @@ BOOL is_Null_Element(t_Element *element);
 t_Element *go_Next_Element(t_Element *element);
 	//funcao para apontar para prev elemento
 t_Element *go_Prev_Element(t_Element *element);
-
 	//funcao dump elemento
 void dump_Element(t_Element *element);
-//==========================================================
+
 t_Element *element_Create(void *data,int size){
 	t_Element *new_Element;
 	//confere se alocação do elemento ocorreu bem	
@@ -60,7 +57,7 @@ t_Element *element_Create(void *data,int size){
 	printf("elemento criado com sucesso\n");
 	return new_Element; 
 }
-//==========================================================
+
 void delete_Element(t_Element *element){
 	//dá free no endereço apontado por elemento
 	free(element->data_Element);
@@ -69,7 +66,7 @@ void delete_Element(t_Element *element){
 	printf("elemento deletado\n");
 	return;
 }
-//==========================================================
+
 BOOL is_Null_Element(t_Element *element){
 	//confere se o elemento é  null
 	if(element==NULL){
@@ -78,8 +75,6 @@ BOOL is_Null_Element(t_Element *element){
 	return FALSE;
 }
 
-
-//==========================================================
 void *get_Data_Element(t_Element *element){
 	//confere se o endereço para o qual elemento aponta é NULL, caso não,retorna endereço
 	if(is_Null_Element(element)){
@@ -89,7 +84,7 @@ void *get_Data_Element(t_Element *element){
 	return element->data_Element;
 	
 }
-//==========================================================
+
 t_Element *get_Prox_Element(t_Element *element){
 	//confere se elemento é NULL
 	if(is_Null_Element(element)){
@@ -100,7 +95,7 @@ t_Element *get_Prox_Element(t_Element *element){
 	return element->prox_Element;
 
 }
-//==========================================================
+
 t_Element *get_Prev_Element(t_Element *element){
 	//confere se elemento é NULL
 	if(is_Null_Element(element)){
@@ -112,7 +107,7 @@ t_Element *get_Prev_Element(t_Element *element){
 
 
 }
-//==========================================================
+
 int get_Element_Size(t_Element *element){
 	//confere se elemento é igual a NULL
 	if(is_Null_Element(element)){
@@ -121,11 +116,8 @@ int get_Element_Size(t_Element *element){
 	}
 	//retorna o tamanho do dado que elemento aponta
 	return element->element_Size;
-
-
-
 }
-//==========================================================
+
 void dump_Element(t_Element *element){
 	//confere se elemento é NULL
 	if(is_Null_Element(element)){
@@ -145,19 +137,18 @@ void dump_Element(t_Element *element){
 	return ;
 
 }
-//==========================================================
+
 t_Element *go_Next_Element(t_Element *element){
 	//elemento aponta para proximo elemento
 	element=element->prox_Element;
 	return element;
 }
-//==========================================================
 
 t_Element *go_Prev_Element(t_Element *element){
 	//elemento aponta para prev elemento
 	element=element->prev_Element;
 	return element;
 }
-//==========================================================
+
 
 

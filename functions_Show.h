@@ -7,18 +7,15 @@
 
 typedef unsigned char BOOL;
 
-///////////////////////////////////////////////////
 void addressDump(void *address);
 void dataDump(void *address,int size);
-
-///////////////////////////////////////////////////
 
 void dataDump(void *address,int size){
 	int i;
 	for (i=0;i<size;i++){
 		printf("%x ",*(unsigned char *)(address+i) ); 
 	}
-		printf("\n");
+	printf("\n");
 }
 
 void addressDump(void *address){
@@ -28,7 +25,7 @@ void addressDump(void *address){
 	}
 	int i;
 	for(i=0;i<8;i++){
-	printf("%x "  ,(unsigned char *)(address+i));	
+		printf("%x ",(unsigned char *)(address+i));	
 	}
 	printf("\n");
 }
